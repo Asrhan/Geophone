@@ -16,11 +16,14 @@ public class NearActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_near);
 
-        this.getItBtn = (Button) findViewById(R.id.findBtn);
+        this.getItBtn = (Button) findViewById(R.id.getItBtn);
         this.getItBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                DeviceComponentSwitch.turnOffFlash();
+                DeviceComponentSwitch.stopVibrate();
+                DeviceComponentSwitch.stopSound();
+                //TODO fermer appli
             }
         });
     }

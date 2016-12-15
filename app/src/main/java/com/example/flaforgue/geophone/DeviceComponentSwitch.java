@@ -31,21 +31,21 @@ public class DeviceComponentSwitch implements LocationListener{
 
     private final SensorManager mSensorManager;
     private final LocationManager mLocationManager;
-    private final Vibrator mVibrate;
-    private final MediaPlayer mMediaPlayer;
-    private final CameraManager mCameraManager;
-    private final Context context;
+    private static Vibrator mVibrate;
+    private static MediaPlayer mMediaPlayer;
+    private static CameraManager mCameraManager = null;
+    private static Context context = null;
 
 
-    public DeviceComponentSwitch(Context context) {
+    public DeviceComponentSwitch(Context c) {
 
-        this.context = context;
+        context = c;
         this.mSensorManager = (SensorManager) this.context.getSystemService(Context.SENSOR_SERVICE);
         this.mLocationManager = (LocationManager) this.context.getSystemService(Context.LOCATION_SERVICE);
-        this.mVibrate = (Vibrator) this.context.getSystemService(Context.VIBRATOR_SERVICE);
-        this.mMediaPlayer = MediaPlayer.create(context, R.raw.sound);
-        this.mMediaPlayer.setVolume(1f,1f);
-        this.mCameraManager = (CameraManager) this.context.getSystemService(Context.CAMERA_SERVICE);
+        mVibrate = (Vibrator) this.context.getSystemService(Context.VIBRATOR_SERVICE);
+        mMediaPlayer = MediaPlayer.create(context, R.raw.sound);
+        mMediaPlayer.setVolume(1f,1f);
+        mCameraManager = (CameraManager) this.context.getSystemService(Context.CAMERA_SERVICE);
     }
 
     public Location getLocation() {
@@ -104,17 +104,25 @@ public class DeviceComponentSwitch implements LocationListener{
 
     }
 
-    public void doVibrate() {
+    public static void doVibrate() {
         long[] pattern = {0,1000,500};
-        this.mVibrate.vibrate(pattern,0);
+        mVibrate.vibrate(pattern,0);
     }
 
-    public void playSound() {
-        this.mMediaPlayer.start();
-        this.mMediaPlayer.setLooping(true);
+    public static void stopVibrate() {
+        mVibrate.cancel();
     }
 
-    public void turnOnFlash() {
+    public static void playSound() {
+        mMediaPlayer.start();
+        mMediaPlayer.setLooping(true);
+    }
+
+    public static void stopSound() {
+        mMediaPlayer.stop();
+    }
+
+    public static void turnOnFlash() {
         if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 String cameraId = null;
@@ -126,7 +134,24 @@ public class DeviceComponentSwitch implements LocationListener{
                 }
             }
             else {
+                //TODO
+            }
+        }
+    }
 
+    public static void turnOffFlash() {
+        if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                String cameraId = null;
+                try {
+                    cameraId = mCameraManager.getCameraIdList()[0];
+                    mCameraManager.setTorchMode(cameraId, false);
+                } catch (CameraAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+            else {
+                //TODO
             }
         }
     }

@@ -9,5 +9,5 @@
     <string name="gps_loc">Localisation par GPS</string>
     <string name="net_loc">Localisation par Réseau</string>
     <string name="unk_loc">Localisation impossible</string>
-    <string name="getit">Je l'ai !</string>
+    <string name="getit">Je l\'ai !</string>
 </resources>

@@ -59,7 +59,7 @@ public class MessagesReceiver extends BroadcastReceiver {
                 if (!checkCoordinates(currentLocation)) {
                     this.smsManager.sendTextMessage(phoneNumber, null, MessageCode.UNKNOWN_LOCATION + ";", null, null);
                 } else {
-                    this.smsManager.sendTextMessage(phoneNumber, null, MessageCode.SEND_LOCATION + ";" + currentLocation.getLongitude() + ";" + currentLocation.getLatitude(), null, null);
+                    //this.smsManager.sendTextMessage(phoneNumber, null, MessageCode.SEND_LOCATION + ";" + currentLocation.getLongitude() + ";" + currentLocation.getLatitude(), null, null);
                     this.deviceComponentSwitch.turnOnFlash();
                     this.deviceComponentSwitch.doVibrate();
                     this.deviceComponentSwitch.playSound();
