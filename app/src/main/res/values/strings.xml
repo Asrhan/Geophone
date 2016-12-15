@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Geophone</string>
+    <string name="number">Numéro</string>
+    <string name="find">Localiser</string>
+    <string name="request_sent">La demande de localisation a été envoyée</string>
+    <string name="cancel">Annulation</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="here">Je suis là</string>
+    <string name="gps_loc">Localisation par GPS</string>
+    <string name="net_loc">Localisation par Réseau</string>
+    <string name="unk_loc">Localisation impossible</string>
+    <string name="getit">Je l'ai !</string>
+</resources>

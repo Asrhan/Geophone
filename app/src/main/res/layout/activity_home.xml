@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.flaforgue.geophone.HomeActivity">
+
+    <RelativeLayout
+        android:id="@+id/dim_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone" >
+    </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/menu"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="70dp"
+        android:id="@+id/menuBtn"
+        app:backgroundTint="@color/colorPrimary" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/gear"
+        android:layout_above="@+id/menuBtn"
+        android:layout_toStartOf="@+id/menuBtn"
+        android:layout_marginStart="31dp"
+        android:layout_marginBottom="33dp"
+        android:id="@+id/optionsBtn"
+        android:visibility="gone"
+        app:backgroundTint="@color/colorPrimary" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/map"
+        android:layout_above="@+id/menuBtn"
+        android:layout_toEndOf="@+id/menuBtn"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="33dp"
+        android:id="@+id/mapBtn"
+        android:visibility="gone"
+        app:backgroundTint="@color/colorPrimary" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/numberInput"
+        android:background="@android:drawable/toast_frame"
+        android:hint="@string/number"
+        android:textSize="24sp"
+        android:textColorLink="@android:color/background_light"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:text="@string/find"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/numberInput"
+        android:layout_alignStart="@+id/numberInput"
+        android:layout_marginTop="12dp"
+        android:layout_alignEnd="@+id/numberInput"
+        android:id="@+id/findBtn"
+        android:textSize="18sp" />
+</RelativeLayout>
