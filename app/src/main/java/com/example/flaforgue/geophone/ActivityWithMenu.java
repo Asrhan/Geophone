@@ -29,6 +29,7 @@ public abstract class ActivityWithMenu extends AppCompatActivity {
         this.dimLayout = (RelativeLayout) findViewById(R.id.dim_layout);
 
         this.menuBtn.setOnClickListener(new MenuBtnClickListenerManager(this));
+        this.optionsBtn.setOnClickListener(new OptionBtnClickListenerManager(this));
     }
 
     public void toggleMenu() {

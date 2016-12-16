@@ -7,6 +7,31 @@
     android:layout_height="match_parent"
     tools:context="com.example.flaforgue.geophone.HomeActivity">
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/numberInput"
+        android:background="@android:drawable/toast_frame"
+        android:hint="@string/number"
+        android:textSize="24sp"
+        android:textColorLink="@android:color/background_light"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:text="@string/find"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/numberInput"
+        android:layout_alignStart="@+id/numberInput"
+        android:layout_marginTop="12dp"
+        android:layout_alignEnd="@+id/numberInput"
+        android:id="@+id/findBtn"
+        android:textSize="18sp" />
+
     <RelativeLayout
         android:id="@+id/dim_layout"
         android:layout_width="match_parent"
@@ -54,29 +79,4 @@
         android:id="@+id/mapBtn"
         android:visibility="gone"
         app:backgroundTint="@color/colorPrimary" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:ems="10"
-        android:id="@+id/numberInput"
-        android:background="@android:drawable/toast_frame"
-        android:hint="@string/number"
-        android:textSize="24sp"
-        android:textColorLink="@android:color/background_light"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:textColor="@android:color/white" />
-
-    <Button
-        android:text="@string/find"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/numberInput"
-        android:layout_alignStart="@+id/numberInput"
-        android:layout_marginTop="12dp"
-        android:layout_alignEnd="@+id/numberInput"
-        android:id="@+id/findBtn"
-        android:textSize="18sp" />
 </RelativeLayout>
