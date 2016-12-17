@@ -28,8 +28,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
         Intent intentLocation = getIntent();
-        this.longitude = Double.parseDouble(intentLocation.getStringExtra("longitude"));
-        this.latitude = Double.parseDouble(intentLocation.getStringExtra("latitude"));
+        this.longitude = intentLocation.getDoubleExtra("longitude", 0);
+        this.latitude = intentLocation.getDoubleExtra("latitude", 0);
     }
 
 

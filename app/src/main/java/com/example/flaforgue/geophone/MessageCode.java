@@ -7,7 +7,9 @@ package com.example.flaforgue.geophone;
 public final class MessageCode {
 
     public final static String LOCATION_REQUEST = "[GEOPHONE]GET_LOCATION";
-    public final static String SEND_LOCATION = "[GEOPHONE]SEND_LOCATION";
+    public final static String SEND_LOCATION_CLOSE = "[GEOPHONE]SEND_LOCATION_CLOSE";
+    public final static String SEND_LOCATION_MIDDLE = "[GEOPHONE]SEND_LOCATION_MIDDLE";
+    public final static String SEND_LOCATION_FAR = "[GEOPHONE]SEND_LOCATION_FAR";
     public final static String UNKNOWN_LOCATION = "[GEOPHONE]UNKNOWN_LOCATION";
 
 }

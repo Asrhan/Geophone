@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class NearActivity extends AppCompatActivity {
+public class CloseActivity extends AppCompatActivity {
 
     private Button getItBtn;
 
@@ -20,9 +20,9 @@ public class NearActivity extends AppCompatActivity {
         this.getItBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DeviceComponentSwitch.turnOffFlash();
-                DeviceComponentSwitch.stopVibrate();
-                DeviceComponentSwitch.stopSound();
+                DeviceComponentManager.turnOffFlash();
+                DeviceComponentManager.stopVibrate();
+                DeviceComponentManager.stopSound();
                 //TODO fermer appli
             }
         });

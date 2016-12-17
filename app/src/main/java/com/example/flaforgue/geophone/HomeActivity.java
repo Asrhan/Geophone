@@ -18,6 +18,11 @@ import java.util.ArrayList;
 
 public class HomeActivity extends ActivityWithMenu {
 
+    private Button firstContactBtn;
+    private Button secondContactBtn;
+    private Button thirdContactBtn;
+    private Button fourthContactBtn;
+
     private Button findBtn;
     private EditText numberInput;
 
@@ -33,6 +38,14 @@ public class HomeActivity extends ActivityWithMenu {
         bindService(mIntent, messagesManagerConnection, BIND_AUTO_CREATE);
 
         this.numberInput = (EditText) findViewById(R.id.numberInput);
+
+        this.firstContactBtn = (Button) findViewById(R.id.firstBtn);
+        this.secondContactBtn = (Button) findViewById(R.id.secondBtn);
+        this.thirdContactBtn = (Button) findViewById(R.id.thirdBtn);
+        this.fourthContactBtn = (Button) findViewById(R.id.fourthBtn);
+
+        //Display Btn if contact filled
+
         this.findBtn = (Button) findViewById(R.id.findBtn);
         this.findBtn.setOnClickListener(new FindBtnClickListenerManager(this));
     }

@@ -177,12 +177,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
             // guidelines.
-            //bindPreferenceSummaryToValue(findPreference("pref_switch_flash"));
             bindPreferenceSummaryToValue(findPreference("pref_message"));
             bindPreferenceSummaryToValue(findPreference("pref_ringtone"));
-            //bindPreferenceSummaryToValue(findPreference("pref_switch_time"));
             bindPreferenceSummaryToValue(findPreference("pref_time"));
-            //bindPreferenceSummaryToValue(findPreference("pref_switch_archive"));
+            bindPreferenceSummaryToValue(findPreference("pref_password"));
         }
 
         @Override
@@ -212,7 +210,14 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
             // guidelines.
-            bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"));
+            bindPreferenceSummaryToValue(findPreference("pref_contact_name_1"));
+            bindPreferenceSummaryToValue(findPreference("pref_contact_number_1"));
+            bindPreferenceSummaryToValue(findPreference("pref_contact_name_2"));
+            bindPreferenceSummaryToValue(findPreference("pref_contact_number_2"));
+            bindPreferenceSummaryToValue(findPreference("pref_contact_name_3"));
+            bindPreferenceSummaryToValue(findPreference("pref_contact_number_3"));
+            bindPreferenceSummaryToValue(findPreference("pref_contact_name_4"));
+            bindPreferenceSummaryToValue(findPreference("pref_contact_number_4"));
         }
 
         @Override

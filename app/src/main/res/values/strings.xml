@@ -10,9 +10,9 @@
     <string name="net_loc">Localisation par Réseau</string>
     <string name="unk_loc">Localisation impossible</string>
     <string name="getit">Je l\'ai !</string>
-    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_settings">Paramètres</string>
 
-    <!-- Strings related to Settings -->
+    <!-- Strings related to General -->
     <string name="pref_header_general">General</string>
     <string name="pref_cat_close_range">A courte portée</string>
     <string name="pref_activate_flash">Activer le flash</string>
@@ -29,8 +29,22 @@
     <string name="pref_archive_title">Archiver les recherches</string>
     <string name="pref_archive_summary">Les demandes de localisation et leur réponse seront stockées dans le téléphone</string>
 
+    <string name="pref_cat_security">Sécurité</string>
+    <string name="pref_password_title">Code PIN</string>
+    <string name="pref_password_default_value">0000</string>
 
-    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+
+    <!-- Strings related to General -->
+    <string name="pref_header_contact">Contact</string>
+    <string name="pref_contact_name">Nom du contact</string>
+    <string name="pref_contact_number">Numéro du contact</string>
+
+    <string name="pref_cat_contact_1">Contact n°1</string>
+    <string name="pref_cat_contact_2">Contact n°2</string>
+    <string name="pref_cat_contact_3">Contact n°3</string>
+    <string name="pref_cat_contact_4">Contact n°4</string>
+
+
     <string-array name="pref_example_list_titles">
         <item>Always</item>
         <item>When possible</item>

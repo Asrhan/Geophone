@@ -1,31 +1,27 @@
 package com.example.flaforgue.geophone;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.hardware.camera2.CameraAccessException;
-import android.hardware.camera2.CameraManager;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
-import android.widget.Toast;
 
 public class MessagesReceiver extends BroadcastReceiver {
 
     private final SmsManager smsManager = SmsManager.getDefault();
     private final String   ACTION_RECEIVE_SMS  = "android.provider.Telephony.SMS_RECEIVED";
 
-    private DeviceComponentSwitch deviceComponentSwitch;
+    private DeviceComponentManager deviceComponentManager;
 
     @Override
     public void onReceive(Context context, Intent intent)
     {
         if (intent.getAction().equals(ACTION_RECEIVE_SMS)) {
-            this.deviceComponentSwitch = new DeviceComponentSwitch(context);
+            this.deviceComponentManager = new DeviceComponentManager(context);
             Bundle bundle = intent.getExtras();
             if (bundle != null) {
                 Object[] pdus = (Object[]) bundle.get("pdus");
@@ -52,27 +48,50 @@ public class MessagesReceiver extends BroadcastReceiver {
     }
 
     private void handleRequest(Context context, String phoneNumber, String messageBody) {
+        Location remoteLocation = null;
+        Location currentLocation = null;
+        Intent intentLocation = null;
+
         switch (messageBody.split(";")[0]) {
 
             case MessageCode.LOCATION_REQUEST:
-                Location currentLocation = deviceComponentSwitch.getLocation();
+                remoteLocation = buildLocationFromMessage(messageBody);
+                currentLocation = deviceComponentManager.getLocation();
                 if (!checkCoordinates(currentLocation)) {
                     this.smsManager.sendTextMessage(phoneNumber, null, MessageCode.UNKNOWN_LOCATION + ";", null, null);
                 } else {
-                    this.smsManager.sendTextMessage(phoneNumber, null, MessageCode.SEND_LOCATION + ";" + currentLocation.getLongitude() + ";" + currentLocation.getLatitude(), null, null);
-                    this.deviceComponentSwitch.turnOnFlash();
-                    this.deviceComponentSwitch.doVibrate();
-                    this.deviceComponentSwitch.playSound();
-                    Intent intentFound = new Intent(context, NearActivity.class);
-                    intentFound.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intentFound);
+                    float distance = calculateDistance(remoteLocation, currentLocation);
+                    if (distance <= 20) {
+                        this.smsManager.sendTextMessage(phoneNumber, null, MessageCode.SEND_LOCATION_CLOSE + ";", null, null);
+                        this.deviceComponentManager.turnOnFlash();
+                        this.deviceComponentManager.doVibrate();
+                        this.deviceComponentManager.playSound();
+                        Intent intentFound = new Intent(context, CloseActivity.class);
+                        intentFound.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intentFound);
+                    } else if (distance > 20 && distance <= 50) {
+
+                    } else {
+                        this.smsManager.sendTextMessage(phoneNumber, null, MessageCode.SEND_LOCATION_FAR + ";" + currentLocation.getLongitude() + ";" + currentLocation.getLatitude(), null, null);
+                    }
                 }
                 break;
 
-            case MessageCode.SEND_LOCATION:
-                Intent intentLocation = new Intent(context, MapsActivity.class);
-                intentLocation.putExtra("longitude", messageBody.split(";")[1]);
-                intentLocation.putExtra("latitude", messageBody.split(";")[2]);
+            case MessageCode.SEND_LOCATION_CLOSE:
+                /*intentLocation = new Intent(context, MapsActivity.class);
+                intentLocation.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intentLocation);*/
+                break;
+
+            case MessageCode.SEND_LOCATION_MIDDLE:
+                //TODO
+                break;
+
+            case MessageCode.SEND_LOCATION_FAR:
+                remoteLocation = buildLocationFromMessage(messageBody);
+                intentLocation = new Intent(context, MapsActivity.class);
+                intentLocation.putExtra("longitude", remoteLocation.getLongitude());
+                intentLocation.putExtra("latitude", remoteLocation.getLatitude());
                 intentLocation.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intentLocation);
                 break;
@@ -91,5 +110,16 @@ public class MessagesReceiver extends BroadcastReceiver {
 
     private boolean checkCoordinates (Location loc) {
         return (loc != null);
+    }
+
+    private Location buildLocationFromMessage (String message) {
+        Location loc = new Location("Build Location");
+        loc.setLongitude(Double.parseDouble(message.split(";")[1]));
+        loc.setLatitude(Double.parseDouble(message.split(";")[2]));
+        return loc;
+    }
+
+    private float calculateDistance(Location firstLoc, Location secondLoc) {
+        return firstLoc.distanceTo(secondLoc);
     }
 }
