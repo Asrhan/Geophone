@@ -1,23 +1,22 @@
-package com.example.flaforgue.geophone;
+package com.example.flaforgue.geophone.activities;
 
 import android.content.ComponentName;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.provider.ContactsContract;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.example.flaforgue.geophone.activities.superactivities.ActivityWithMenu;
+import com.example.flaforgue.geophone.managers.clicklisteners.FindBtnClickListenerManager;
+import com.example.flaforgue.geophone.managers.message.MessagesManager;
+import com.example.flaforgue.geophone.managers.clicklisteners.QuickFindBtnClickListenerManager;
+import com.example.flaforgue.geophone.R;
 
 public class HomeActivity extends ActivityWithMenu {
 

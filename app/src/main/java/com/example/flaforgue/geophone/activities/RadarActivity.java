@@ -1,8 +1,11 @@
-package com.example.flaforgue.geophone;
+package com.example.flaforgue.geophone.activities;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.flaforgue.geophone.managers.clicklisteners.HomeBtnClickListenerManager;
+import com.example.flaforgue.geophone.R;
 
 public class RadarActivity extends AppCompatActivity {
 

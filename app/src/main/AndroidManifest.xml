@@ -22,24 +22,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <receiver
-            android:name=".MessagesReceiver"
-            class="com.example.flaforgue.geophone.MessagesReceiver">
+            android:name=".managers.message.MessagesReceiver"
+            class="com.example.flaforgue.geophone.managers.message.MessagesReceiver">
             <intent-filter android:priority="0">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
 
-        <activity android:name=".HomeActivity">
+        <activity android:name=".activities.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RadarActivity" />
+        <activity android:name=".activities.RadarActivity" />
 
         <service
-            android:name=".MessagesManager"
+            android:name=".managers.message.MessagesManager"
             android:enabled="true"
             android:exported="true" />
         <!--
@@ -55,13 +55,13 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name=".activities.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".CloseActivity" />
+        <activity android:name=".activities.CloseActivity" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_settings" />
-        <activity android:name=".CloseSearcherActivity"></activity>
+        <activity android:name=".activities.CloseSearcherActivity"></activity>
     </application>
 
 </manifest>
