@@ -42,7 +42,6 @@ public class DeviceComponentManager implements LocationListener{
         this.mLocationManager = (LocationManager) this.context.getSystemService(Context.LOCATION_SERVICE);
         mVibrate = (Vibrator) this.context.getSystemService(Context.VIBRATOR_SERVICE);
         mMediaPlayer = MediaPlayer.create(context, R.raw.sound);
-        mMediaPlayer.setVolume(1f,1f);
         mCameraManager = (CameraManager) this.context.getSystemService(Context.CAMERA_SERVICE);
     }
 
@@ -112,6 +111,7 @@ public class DeviceComponentManager implements LocationListener{
     }
 
     public static void playSound() {
+        mMediaPlayer.setVolume(1f,1f);
         mMediaPlayer.start();
         mMediaPlayer.setLooping(true);
     }

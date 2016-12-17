@@ -10,6 +10,11 @@
     <string name="net_loc">Localisation par Réseau</string>
     <string name="unk_loc">Localisation impossible</string>
     <string name="getit">Je l\'ai !</string>
+    <string name="found_close">Le télépone a été localisé : le flash, le vibreur et la musique ont été déclenchés</string>
+    <string name="searching">Repositionnement des satellites...</string>
+    <string name="wrong_format">Le format du numéro est incorrect</string>
+
+
     <string name="title_activity_settings">Paramètres</string>
 
     <!-- Strings related to General -->

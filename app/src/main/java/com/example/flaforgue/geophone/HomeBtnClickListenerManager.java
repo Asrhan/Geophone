@@ -16,8 +16,6 @@ public class HomeBtnClickListenerManager implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(this.parentActivity, this.parentActivity.getString(R.string.cancel), Toast.LENGTH_SHORT).show();
-
         Intent intentSettingsActivity = new Intent(this.parentActivity, HomeActivity.class);
         this.parentActivity.startActivity(intentSettingsActivity);
         this.parentActivity.overridePendingTransition(R.anim.slide_from_down, R.anim.slide_to_up);

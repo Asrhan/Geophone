@@ -3,9 +3,11 @@ package com.example.flaforgue.geophone;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
@@ -48,9 +50,10 @@ public class MessagesReceiver extends BroadcastReceiver {
     }
 
     private void handleRequest(Context context, String phoneNumber, String messageBody) {
-        Location remoteLocation = null;
-        Location currentLocation = null;
-        Intent intentLocation = null;
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        Location remoteLocation;
+        Location currentLocation;
+        Intent intentLocation;
 
         switch (messageBody.split(";")[0]) {
 
@@ -69,8 +72,8 @@ public class MessagesReceiver extends BroadcastReceiver {
                         Intent intentFound = new Intent(context, CloseActivity.class);
                         intentFound.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intentFound);
-                    } else if (distance > 20 && distance <= 50) {
-
+                    } else if (distance > 20 && distance <= 50000) {
+                        this.smsManager.sendTextMessage(phoneNumber, null, MessageCode.SEND_LOCATION_MIDDLE + ";" + calculateDirection(remoteLocation,currentLocation), null, null);
                     } else {
                         this.smsManager.sendTextMessage(phoneNumber, null, MessageCode.SEND_LOCATION_FAR + ";" + currentLocation.getLongitude() + ";" + currentLocation.getLatitude(), null, null);
                     }
@@ -78,9 +81,9 @@ public class MessagesReceiver extends BroadcastReceiver {
                 break;
 
             case MessageCode.SEND_LOCATION_CLOSE:
-                /*intentLocation = new Intent(context, MapsActivity.class);
+                intentLocation = new Intent(context, CloseSearcherActivity.class);
                 intentLocation.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intentLocation);*/
+                context.startActivity(intentLocation);
                 break;
 
             case MessageCode.SEND_LOCATION_MIDDLE:
@@ -97,9 +100,9 @@ public class MessagesReceiver extends BroadcastReceiver {
                 break;
 
             case MessageCode.UNKNOWN_LOCATION:
-                Intent intentMenu = new Intent(context, HomeActivity.class);
-                intentMenu.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intentMenu);
+                intentLocation = new Intent(context, HomeActivity.class);
+                intentLocation.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intentLocation);
                 break;
 
             default:
@@ -121,5 +124,9 @@ public class MessagesReceiver extends BroadcastReceiver {
 
     private float calculateDistance(Location firstLoc, Location secondLoc) {
         return firstLoc.distanceTo(secondLoc);
+    }
+
+    private float calculateDirection(Location firstLoc, Location secondLoc) {
+        return firstLoc.bearingTo(secondLoc);
     }
 }
